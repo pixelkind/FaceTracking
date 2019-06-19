@@ -54,7 +54,21 @@ extension ViewController: ARSCNViewDelegate {
         }
         
         faceGeometry.update(from: faceAnchor.geometry)
+        
+        guard let tongueOut = faceAnchor.blendShapes[.tongueOut]?.floatValue,
+            let leftEye = faceAnchor.blendShapes[.eyeBlinkLeft]?.floatValue,
+            let rightEye = faceAnchor.blendShapes[.eyeBlinkRight]?.floatValue else {
+            return
+        }
+        if tongueOut > 0.8 && tongueOut <= 1.0{
+            
+            
+            if leftEye > 0.5 && leftEye <= 1.0 && rightEye > 0.5 && rightEye <= 1.0 {
+                print("🤪")
+            }
+
+            
+        }
     }
     
 }
-
